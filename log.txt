@@ -1,0 +1,84 @@
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker run --name pinger -it busybox ping -c 7 netology.ru
+Unable to find image 'busybox:latest' locally
+latest: Pulling from library/busybox
+ec562eabd705: Pull complete
+Digest: sha256:9ae97d36d26566ff84e8893c64a6dc4fe8ca6d1144bf5b87b2b85a32def253c7
+Status: Downloaded newer image for busybox:latest
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=63 time=22.070 ms
+64 bytes from 188.114.99.224: seq=1 ttl=63 time=23.926 ms
+64 bytes from 188.114.99.224: seq=2 ttl=63 time=24.349 ms
+64 bytes from 188.114.99.224: seq=3 ttl=63 time=24.205 ms
+64 bytes from 188.114.99.224: seq=4 ttl=63 time=23.935 ms
+64 bytes from 188.114.99.224: seq=5 ttl=63 time=24.032 ms
+64 bytes from 188.114.99.224: seq=6 ttl=63 time=24.097 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 22.070/23.802/24.349 ms
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+0668ff8354e4   busybox   "ping -c 7 netology.…"   27 seconds ago   Exited (0) 20 seconds ago             pinger
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker logs pinger
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=63 time=22.070 ms
+64 bytes from 188.114.99.224: seq=1 ttl=63 time=23.926 ms
+64 bytes from 188.114.99.224: seq=2 ttl=63 time=24.349 ms
+64 bytes from 188.114.99.224: seq=3 ttl=63 time=24.205 ms
+64 bytes from 188.114.99.224: seq=4 ttl=63 time=23.935 ms
+64 bytes from 188.114.99.224: seq=5 ttl=63 time=24.032 ms
+64 bytes from 188.114.99.224: seq=6 ttl=63 time=24.097 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 22.070/23.802/24.349 ms
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker run --name pinger -it busybox ping -c 7 netology.ru
+docker: Error response from daemon: Conflict. The container name "/pinger" is already in use by container "0668ff8354e4f5284c6c7c934921c4a647d50d3214c7e8d603ce83a0cf378815". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS                      PORTS     NAMES
+0668ff8354e4   busybox   "ping -c 7 netology.…"   About a minute ago   Exited (0) 56 seconds ago             pinger
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker logs pinger
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=63 time=22.070 ms
+64 bytes from 188.114.99.224: seq=1 ttl=63 time=23.926 ms
+64 bytes from 188.114.99.224: seq=2 ttl=63 time=24.349 ms
+64 bytes from 188.114.99.224: seq=3 ttl=63 time=24.205 ms
+64 bytes from 188.114.99.224: seq=4 ttl=63 time=23.935 ms
+64 bytes from 188.114.99.224: seq=5 ttl=63 time=24.032 ms
+64 bytes from 188.114.99.224: seq=6 ttl=63 time=24.097 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 22.070/23.802/24.349 ms
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker rm pinger
+pinger
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker ps -a       
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+alpine       latest    a606584aa9aa   3 weeks ago     7.8MB
+busybox      latest    65ad0d468eb1   14 months ago   4.26MB
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker image rm busybox
+Untagged: busybox:latest
+Untagged: busybox@sha256:9ae97d36d26566ff84e8893c64a6dc4fe8ca6d1144bf5b87b2b85a32def253c7
+Deleted: sha256:65ad0d468eb1c558bf7f4e64e790f586e9eda649ee9f130cd0e835b292bbc5ac
+Deleted: sha256:d51af96cf93e225825efd484ea457f867cb2b967f7415b9a3b7e65a2f803838a
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+alpine       latest    a606584aa9aa   3 weeks ago   7.8MB
+
+F:\learning\NODE.JS\projects\NDSE_009_docker1>
